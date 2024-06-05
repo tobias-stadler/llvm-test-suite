@@ -99,6 +99,15 @@ def getUserTime(filename):
         contents = fd.read()
         return getUserTimeFromContents(contents)
 
+def getInstructions(filename):
+    """Extract the number of instructions from a .time file produced by timeit"""
+    with open(filename) as fd:
+        lines = fd.readlines()
+        line = [line for line in lines if line.startswith("instructions")]
+        assert len(line) == 1
+        m = re.match(r"instructions\s+([0-9.]+)", line[0])
+        return int(m.group(1).replace('.',''))
+
 
 def getUserTimeFromContents(contents):
     from_bytes = lambda s: s.decode("utf-8") if type(s) == bytes else s

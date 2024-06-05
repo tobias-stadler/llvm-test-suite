@@ -228,7 +228,7 @@ def determine_common_prefix_suffix(names, min_len=8):
 
 def format_relative_diff(value):
     if not isinstance(value, numbers.Integral):
-        return "%4.1f%%" % (value * 100.0)
+        return "%4.2f%%" % (value * 100.0)
     else:
         return "%-5d" % value
 
